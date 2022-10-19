@@ -11,10 +11,10 @@ function main() {
         for (const element of sorteio) {
             cards.innerHTML += `<div class="card">
             <div class="front-face face">
-              <img src="./img/back.png" alt="back - ou seria front?" />
+              <img src="./img/${element}parrot.gif" alt="${element}" />
             </div>
             <div class="back-face face">
-              <img src="./img/${element}parrot.gif" alt="${element}" />
+              <img src="./img/back.png" alt="back" />
             </div>
           </div>`;
         }
