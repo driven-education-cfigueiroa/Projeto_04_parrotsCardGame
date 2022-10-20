@@ -60,7 +60,9 @@ function onClick(el) {
         clicks++;
     }
     if (pairs === finished.length) {
-        alert(`Você ganhou em ${clicks} jogadas!`);
+        setTimeout(function () {
+            alert(`Você ganhou em ${clicks} jogadas!`);
+        }, 500);
     }
 }
 
