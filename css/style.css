@@ -24,6 +24,10 @@ h1 {
   margin: 0 34px;
 }
 
+.card {
+  cursor: pointer;
+}
+
 .cards .card {
   width: 117px;
   height: 146px;

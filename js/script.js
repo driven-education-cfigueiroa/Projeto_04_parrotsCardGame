@@ -20,7 +20,7 @@ function turn(card) {
     card.children[1].classList.toggle("back-face");
 }
 
-function turn2(card) {
+function turnArr(card) {
     card[0].children[1].classList.toggle("back-face");
 }
 
@@ -29,7 +29,7 @@ function timeout(ele, tempc) {
     flagged = true;
     setTimeout(function () {
         turn(ele);
-        turn2(tempc);
+        turnArr(tempc);
         flagged = false;
     }, second);
 }
@@ -46,6 +46,7 @@ function onClick(el) {
         turn(el);
         tempcard.push(el);
         clicks++;
+        return;
     } else if (currentCardType !== temp[0]) {
         turn(el);
         timeout(el, tempcard);
@@ -103,31 +104,25 @@ function isEven(num) {
 }
 
 function getRandom(arr, n) {
-    let len = arr.length;
-    const result = new Array(n), taken = new Array(len);
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
     if (n > len) {
         throw new RangeError("getRandom: more elements taken than available");
     }
-    while (n > 0) {
-        n--;
-        const x = Math.floor(Math.random() * len);
-        let y;
-        if (x in taken) {
-            y = taken[x];
-        } else {
-            y = x;
-        }
-        result[n] = arr[y];
-        let z;
-        len--;
-        if (taken.includes(len)) {
-            z = taken[len];
-        } else {
-            z = len;
-        }
-        taken[x] = z;
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
     }
     return result;
+}
+
+function turnAllCards() {
+    const cards = document.querySelectorAll(".card");
+    for (const element of cards) {
+        turn(element);
+    }
 }
 
 main();
