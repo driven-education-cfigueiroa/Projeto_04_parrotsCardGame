@@ -59,22 +59,24 @@ function onClick(el) {
         temp = [];
         clicks++;
     }
+    const transitionLength = 500;
     if (pairs === finished.length) {
         setTimeout(function () {
             alert(`Você ganhou em ${clicks} jogadas!`);
-        }, 500);
+        }, transitionLength);
     }
 }
 
 function distributeCards() {
     const pair = 2;
     const input = getValidInput(minCards, maxCards);
-    const cards = document.querySelector(".cards");
     pairs = input / pair;
-    let randomize = getRandom(parrots, pairs);
-    for (let i = 0; i < pair; i++) {
-        for (const element of randomize) {
-            cards.innerHTML += `<div class="card">
+    const cards = document.querySelector(".cards");
+    const randomizeCards = getRandom(parrots, pairs);
+    const makePairs = randomizeCards.flatMap(i => [i, i]);
+    const randomizePairs = getRandom(makePairs, input);
+    for (const element of randomizePairs) {
+        cards.innerHTML += `<div class="card">
             <div class="front-face face">
               <img src="./img/${element}parrot.gif" alt="${element}" />
             </div>
@@ -82,10 +84,6 @@ function distributeCards() {
               <img src="./img/back.png" alt="back" />
             </div>
           </div>`;
-        }
-        if (i === 0) {
-            randomize = getRandom(randomize, randomize.length);
-        }
     }
 }
 
@@ -113,8 +111,21 @@ function getRandom(arr, n) {
     while (n > 0) {
         n--;
         const x = Math.floor(Math.random() * len);
-        result[n] = arr[x in taken ? taken[x] : x];
-        taken[x] = --len in taken ? taken[len] : len;
+        let y;
+        if (x in taken) {
+            y = taken[x];
+        } else {
+            y = x;
+        }
+        result[n] = arr[y];
+        let z;
+        len--;
+        if (taken.includes(len)) {
+            z = taken[len];
+        } else {
+            z = len;
+        }
+        taken[x] = z;
     }
     return result;
 }
