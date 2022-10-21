@@ -91,7 +91,7 @@ function distributeCards() {
 function getValidInput(min, max) {
     let isNum, input, inputNum;
     do {
-        input = prompt("Com quantas cartas quer jogar, caro usuário?");
+        input = prompt("Com quantas cartas quer jogar?\n1. Deve ser número par;\n2. Maior ou igual a 4;\n3. Menor ou igual a 14.");
         isNum = /^\d+$/.test(input);
         inputNum = Number(input);
     } while (!isNum || !isEven(inputNum) || inputNum < min || inputNum > max);

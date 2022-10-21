@@ -54,8 +54,8 @@ h1 {
   align-items: center;
   justify-content: center;
   position: absolute;
-  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   transition: all 0.5s;
   transform-style: preserve-3d;
 }
