@@ -138,7 +138,6 @@ function newGame() {
     let input
     do {
         input = prompt("gostaria de reiniciar a partida?\ndigite 'sim' ou 'não'");
-        console.log(input)
     } while (input !== "sim" && input !== "não");
     if (input === "não") {
         return;
