@@ -2,18 +2,32 @@
 
 body {
   background-color: #eef9bf;
-}
-
-h1 {
   color: #75b79e;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 700;
+}
+
+h1 {
   font-size: 56px;
   line-height: 66px;
   letter-spacing: -0.004em;
   text-align: center;
   margin: 40px auto;
+}
+
+.timer {
+  color: #75b79e;
+  font-size: 24px;
+  width: 15%;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
 }
 
 .cards {
@@ -78,19 +92,4 @@ h1 {
     line-height: 42px;
     letter-spacing: -0.004em;
   }
-}
-
-.timer {
-  color: #75b79e;
-  font-size: 24px;
-  font-weight: 700;
-  width: 15%;
-  height: 40px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 10px;
 }
