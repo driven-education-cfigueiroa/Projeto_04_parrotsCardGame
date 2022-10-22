@@ -79,3 +79,18 @@ h1 {
     letter-spacing: -0.004em;
   }
 }
+
+.timer {
+  color: #75b79e;
+  font-size: 24px;
+  font-weight: 700;
+  width: 15%;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}

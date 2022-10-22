@@ -1,9 +1,9 @@
-const minCards = 4, maxCards = 14, finished = [], parrots = ['bobross', 'explody', 'fiesta', 'metal', 'revertit', 'triplets', 'unicorn'];
-let pairs, clicks = 0, temp = [], tempcard = [];
-let flagged = false;
+const minCards = 4, maxCards = 14, parrots = ['bobross', 'explody', 'fiesta', 'metal', 'revertit', 'triplets', 'unicorn'];
+let pairs, startTimer, clicks = 0, timerValue = 0; temp = [], tempcard = [], finished = [], flagged = false;
 
 function main() {
     distributeCards();
+    startTimer = setInterval(timer, 1000);
     clickWatcher();
 }
 
@@ -62,8 +62,10 @@ function onClick(el) {
     }
     const transitionLength = 500;
     if (pairs === finished.length) {
+        clearInterval(startTimer);
         setTimeout(function () {
-            alert(`Você ganhou em ${clicks} jogadas!`);
+            alert(`Você ganhou em ${clicks} jogadas em ${timerValue} segundos!`);
+            newGame();
         }, transitionLength);
     }
 }
@@ -118,11 +120,32 @@ function getRandom(arr, n) {
     return result;
 }
 
-function turnAllCards() {
-    const cards = document.querySelectorAll(".card");
-    for (const element of cards) {
-        turn(element);
-    }
+function resetGame() {
+    pairs = undefined, startTimer = undefined, clicks = 0, timerValue = 0; temp = [], tempcard = [], finished = [], flagged = false;
+    const timer = document.querySelector(".timer");
+    const cards = document.querySelector(".cards");
+    timer.innerText = '';
+    cards.innerHTML = '';
 }
 
-main();
+function timer() {
+    const timer = document.querySelector(".timer");
+    timerValue++;
+    timer.innerText = timerValue;
+}
+
+function newGame() {
+    let input
+    do {
+        input = prompt("gostaria de reiniciar a partida?\ndigite 'sim' ou 'não'");
+        console.log(input)
+    } while (input !== "sim" && input !== "não");
+    if (input === "não") {
+        return;
+    }
+    resetGame();
+    setTimeout(main, 1000);
+}
+
+setTimeout(main, 500);
+
